@@ -28,6 +28,47 @@ body {
   @return $random_range;
 }
 
+.conditional-div {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .conditional-div {
+    width: 100%;
+    height: 500px;
+    display: block;
+    color: black;
+  }
+
+  header {
+    display: none !important;
+  }
+
+  .hero {
+    display: none !important;
+  }
+
+  .about-me {
+    display: none !important;
+  }
+
+  .services {
+    display: none !important;
+  }
+
+  .projects {
+    display: none !important;
+  }
+
+  .contact {
+    display: none !important;
+  }
+
+  .madeBy {
+    display: none !important;
+  }
+}
+
 .stars {
   position: absolute;
   width: 30%;
