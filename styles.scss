@@ -781,6 +781,7 @@ body.dark-theme {
       box-sizing: border-box; // include padding/gap in width calculation
       justify-content: center;
       padding: 0 10px; // small padding to prevent edge overflow
+      margin: 0 auto;
 
       .technologie {
         display: flex;
