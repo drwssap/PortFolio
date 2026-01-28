@@ -4,6 +4,7 @@ $font-color: #000;
 $button-color: #007bff;
 $button-hover-color: darken($button-color, 10%);
 
+//
 @mixin sp-layout {
   @media screen and (max-width: 750px) {
     @content;
