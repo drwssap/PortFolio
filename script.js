@@ -132,13 +132,70 @@ window.onload = function () {
   document.body.appendChild(css);
 };
 
-document.getElementById("contact-form").addEventListener("submit", function (event) {
-  event.preventDefault();
+document
+  .getElementById("contact-form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
 
-  emailjs.sendForm('service_solpu5m', 'template_u60sojq', this, 'wVj3ZR4Rvw-J4KoI_')
-    .then(function () {
-      alert("Message envoyé avec succès !");
-    }, function (error) {
-      alert("Échec de l'envoi. Erreur : " + error.text);
-    });
+    emailjs
+      .sendForm(
+        "service_solpu5m",
+        "template_u60sojq",
+        this,
+        "wVj3ZR4Rvw-J4KoI_",
+      )
+      .then(
+        function () {
+          alert("Message envoyé avec succès !");
+        },
+        function (error) {
+          alert("Échec de l'envoi. Erreur : " + error.text);
+        },
+      );
+  });
+
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("nav-menu");
+
+// Toggle hamburger menu
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  navMenu.classList.toggle("active");
+
+  if (navMenu.classList.contains("active")) {
+    // Freeze scroll
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${window.scrollY}px`;
+    document.body.style.width = "100%";
+  } else {
+    // Unfreeze scroll
+    const scrollY = document.body.style.top;
+    document.body.style.position = "";
+    document.body.style.top = "";
+    window.scrollTo(0, parseInt(scrollY || "0") * -1);
+  }
+});
+
+// Close menu and scroll to section when link is clicked
+navMenu.querySelectorAll("a[href^='#']").forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault(); // Prevent default anchor jump
+
+    // Close hamburger menu
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+
+    // Unfreeze scroll
+    const scrollY = document.body.style.top;
+    document.body.style.position = "";
+    document.body.style.top = "";
+    window.scrollTo(0, parseInt(scrollY || "0") * -1);
+
+    // Smooth scroll to section
+    const targetId = link.getAttribute("href").substring(1);
+    const targetEl = document.getElementById(targetId);
+    if (targetEl) {
+      targetEl.scrollIntoView({ behavior: "smooth" });
+    }
+  });
 });
